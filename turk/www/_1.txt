@@ -1,0 +1,52 @@
+https://pma.1gb.ru/?server=100&db=gb_turk&pma_username=gb_turk&pma_password=4d74afbb7iw
+
+
+
+существительные места (откуда-куда-где) 
+школа, дом, работа, магазин, парк, город, корабль, машина, автобус, поезд, самолет, автовокзал, порт, аэропорт, автостоянка
+ресторан, кафе, супермаркет, салон, 
+
+gb_turk
+               Москва, РТКомм/СТЕК
+ сервер:       mysql100.1gb.ru
+    (это также называется host; нельзя оставлять localhost!)
+ пользователь: gb_turk
+    (это также называется логин, login)
+ пароль:       4d74afbb7iw
+
+
+$link = mysql_connect('localhost', 'user', 'pass');
+mysql_set_charset("UTF8", $link);
+
+ 
+
+$query = "SELECT `$tbl_tubes`.`id` as `nnn`,
+`$tbl_tubes`.`type` as `type`,
+`$tbl_tubes`.`show_ru` as `show_ru`,
+`$tbl_tubes`.`show_en` as `show_en`,
+`$tbl_tubes`.`name_ru` as `name_ru`,
+`$tbl_tubes`.`name_en` as `name_en`,
+`$tbl_tubes`.`factory` as `factory`,
+`$tbl_tubes`.`equiv_ru` as `equiv_ru`,
+`$tbl_tubes`.`equiv_en` as `equiv_en`,
+`$tbl_tubes`.`keywords` as `keywords`,
+`$tbl_tubes`.`appl_ru` as `appl_ru`,
+`$tbl_tubes`.`appl_en` as `appl_en`,
+`$tbl_tubes`.`is_foto` as `is_foto`,
+`$tbl_tubes`.`is_data` as `is_data`,
+`$tbl_tubes`.`socket` as `socket`,
+`$tbl_tubes`.`cap` as `cap`,
+`$tbl_tubes`.`match` as `match`,
+`$tbl_price`.`price` as `price`,
+`$tbl_price`.`priced` as `priced`,
+`$tbl_price`.`qtyd` as `qtyd`,
+`$tbl_price`.`discount` as `discount`,
+`$tbl_price`.`trust` as `trust`
+
+FROM `$tbl_tubes` LEFT JOIN `$tbl_price` ON `$tbl_tubes`.`id` = `$tbl_price`.`id` 
+WHERE ($where) $where_adm 
+
+ORDER BY `$tbl_tubes`.`name$l`
+
+";  // print "$query <br>";
+

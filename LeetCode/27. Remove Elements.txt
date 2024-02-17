@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $val
+     * @return Integer
+     */
+    function removeElement(&$nums, $val) {
+        $lastNum = 0;
+        foreach ($nums as $num)
+        {
+            if ($num == $val)
+            {
+                continue;
+            }
+            else 
+            {
+                $nums[$lastNum] = $num;
+                $lastNum++;
+            }
+        }
+        return $lastNum;
+
+    }
+}

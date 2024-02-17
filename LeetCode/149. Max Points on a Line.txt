@@ -1,0 +1,17 @@
+$ab = Array();
+        $size = sizeof ($points);
+      for ($i1=1; $i1<$size; $i1++)  
+      {
+            for ($i2=0; $i2<$i1; $i2++) 
+            {
+                if ($points[$i1][0]==$points[$i2][0]) {$a = "q"; $b=$points[$i1][0];}
+                else {
+                    $a = ($points[$i1][1] - $points[$i2][1]) / ($points[$i1][0]-$points[$i2][0]);
+                    $b = $points[$i1][1]-$a*$points[$i1][0];
+                    }
+                $ab[] = $a . "_" . $b;
+            }
+
+      }
+      $result = max (array_values( array_count_values($ab)));
+      return (1+sqrt(1+8*$result))/2;

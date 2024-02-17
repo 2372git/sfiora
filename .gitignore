@@ -1,1 +1,10 @@
-/php/nbproject/private/
+**/nbproject
+php/nbproject
+nbproject/
+*.gif
+*.jpg
+*.jpeg
+*.pjpeg
+*.svg
+*.png
+*.log

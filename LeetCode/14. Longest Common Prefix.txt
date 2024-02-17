@@ -1,0 +1,30 @@
+class Solution {
+
+    /**
+     * @param String[] $strs
+     * @return String
+     */
+    function longestCommonPrefix($strs) {
+        $line = $strs[0];
+        $l0 = strlen ($strs[0]);
+
+        foreach ($strs as $str)
+        {
+            $l = strlen ($str);
+            if ($l == 0) {return "";}
+            if ($l < $l0) {$l0 = $l;}
+            
+            for ($i=0; $i<$l0; $i++)
+            {
+                if ($str[$i] != $line[$i]) 
+                {
+                    if ($i == 0) {return "";}
+                    break;
+                }
+            }
+            $l0 = $i;
+            $line = substr($line, 0, $i);
+        }
+        return $line;
+    }
+}

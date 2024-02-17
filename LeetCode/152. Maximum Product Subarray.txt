@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function maxProduct($nums) {
+        $size = count($nums);
+        if ($size==1) {return $nums[0];}
+        $prodmax=$nums[0];
+        $j0 = 0;
+        for ($i=1; $i<$size; $i++)
+        {
+            $prod = $nums[$i];
+            if ($prod > $prodmax) {$prodmax = $prod;}
+            if ($nums[$i] == 0) {$j0 = $i+1; continue;}
+            for ($j=$i-1; $j>=$j0; $j--)
+            {
+            $prod = $prod * $nums[$j];
+            if ($prod > $prodmax) {$prodmax = $prod;}
+            }
+        }
+return $prodmax;
+    }
+}

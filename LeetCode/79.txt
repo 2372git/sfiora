@@ -1,0 +1,61 @@
+class Solution {
+
+    /**
+     * @param String[][] $board
+     * @param String $word
+     * @return Boolean
+     */
+
+    function exist($board, $word) {
+        $stek = Array(Array());
+        $length = strlen($word);
+        $width = sizeof($board[0]);
+        $height = sizeof($board);
+// предварительные проверки, что бы не мучить рекурсию
+        if ($width == 0 OR $height == 0) {return false;}
+// если слово больше, чем количество букв в прямоугольнике
+        if ($length > $width*$height) {return false;}
+// проверить, есть ли вообще все символы $word в $board
+        $b = Array();
+        for($j=0; $j<$height; $j++) {
+            $b = array_merge($b, $board[$j]);
+        }
+        $b = array_unique ($b);
+        $c = array_unique (str_split ($word));
+        if (sizeof($c) > sizeof($b)){return false;}
+            foreach ($c as $c0) {
+                if (!in_array($c0, $b)) {return false;}
+            }
+        
+// можно добавить тесты для ускорения, если только  одна строка или столбец
+//        if ($width == 1) {return ...;} 
+//        if ($height == 1) {return ...;}
+
+// Запускаем поиск первого символа и потом рекурсию
+        for($i=0; $i<$width; $i++)
+        {
+            for($j=0; $j<$height; $j++)
+            {
+                if (findNext($stek, $i, $j, 0, $width, $height, $board, $word, $length) === true) {return true;}
+            }
+        }
+    return false;
+    }
+}
+
+// не знаю, как уменьшить кучу аргументов в функции. Приходится передавать все
+function findNext ($stek, $x, $y, $num, $width, $height, &$board, &$word, $length) {
+        if ($num >= $length) {return true;}
+        if ($x<0 OR $x >=$width OR $y<0 OR $y >=$height) {return false;}
+        if (in_array(Array($x, $y), $stek)) {return false;}
+
+        if ($board[$y][$x]===$word[$num]) {
+            array_push($stek, Array($x, $y));
+// можно еще для ускорения сделать 4 стратегии, в какую сторону идти от последней точки, но убрав возврат в то место, откуда пришли
+            if (findNext ($stek, $x+1, $y, $num+1, $width, $height, $board, $word, $length) == true) {return true;}
+            if (findNext ($stek, $x-1, $y, $num+1, $width, $height, $board, $word, $length) == true) {return true;}
+            if (findNext ($stek, $x, $y+1, $num+1, $width, $height, $board, $word, $length) == true) {return true;}
+            if (findNext ($stek, $x, $y-1, $num+1, $width, $height, $board, $word, $length) == true) {return true;}
+        }
+        return false;
+}

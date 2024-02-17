@@ -1,0 +1,46 @@
+#AddDefaultCharset utf-8
+
+DirectoryIndex index.php
+
+
+Order Allow,Deny
+Allow from all
+
+Options ExecCGI FollowSymLinks Includes MultiViews
+
+RewriteEngine on
+Options +FollowSymlinks
+
+RewriteBase /
+
+
+#RewriteRule ^/?([a-zA-Z0-9_\-]+)/?$        /index.php?bl=$1 [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .php$ - [QSA,L]
+RewriteRule .gif$ - [QSA,L]
+RewriteRule .jpg$ - [QSA,L]
+RewriteRule ^/?inc - [QSA,L]
+RewriteRule ^/?pic - [QSA,L]
+RewriteRule ^/?images - [QSA,L]
+
+RewriteRule ^/?$ index.php [QSA,L]
+RewriteRule ^/?index.php/?$ index.php [QSA,L]
+RewriteRule ^/?([^/]+)/?$ index.php?bl=$1 [QSA,L]
+RewriteRule ^/?([^/]+)/?([^/]+)$ index.php?bl=$2 [QSA,L]
+
+
+
+
+# в REQUEST_URI не передаются строки запроса (переменные)/ Только каталоги и файлы
+
+
+#- Требуется авторизация (Authorization Required)
+ErrorDocument 401 /error.php?e=401
+#- Доступ запрещен (Forbidden)
+ErrorDocument 403 /error.php?e=403
+#- Страница не найдена (Not Found)
+ErrorDocument 404 /error.php?e=404 
+#- Ошибка в скрипте (Internal Server Error)
+ErrorDocument 500 /error.php?e=500  

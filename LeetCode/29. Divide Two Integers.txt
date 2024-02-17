@@ -1,0 +1,47 @@
+class Solution {
+
+    /**
+     * @param Integer $dividend
+     * @param Integer $divisor
+     * @return Integer
+     */
+    function divide($dividend, $divisor) {
+
+        $limit = 1 << 31;
+        if ($dividend == -$divisor) {return -1;}
+        if ($dividend == $divisor) {return 1;}
+
+        $l = true;
+        if ($dividend < 0) {$dividend = -$dividend; $l = !$l;}
+        if ($divisor < 0) {$divisor = -$divisor; $l = !$l;}
+        if ($dividend < $divisor) {return 0;}
+
+        $j=0;
+        $k=1;
+
+        while ($dividend >= ABS($divisor<<$j)) 
+        {
+            $div2[$j] = ABS($divisor<<$j); 
+            $div1[$j] = $k; 
+            $k+=$k;
+            $j++; 
+            if ($div2[$j]  == $limit) {break;}
+        }
+
+        $i=0;
+        for ($k=$j-1; $k>=0; $k--)
+        {
+            if ($dividend-$div2[$k]  >=0) 
+            {
+                $dividend -= $div2[$k];
+                $i+=$div1[$k];
+                if ($dividend<$divisor) {break;}
+            }
+        }
+
+        if (!$l) {$i = -$i;}
+        if ($i > $limit-1) {$i = $limit-1;}
+        if ($i < -$limit) {$i = -$limit;}
+        return $i;
+    }
+}

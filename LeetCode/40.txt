@@ -1,0 +1,38 @@
+class Solution {
+
+    /**
+     * @param Integer[] $candidates
+     * @param Integer $target
+     * @return Integer[][]
+     */
+    function combinationSum2($candidates, $target) {
+        $l = sizeof($candidates);
+        if ($l>100 OR $l<1) {return [];}
+        if ($target>30 OR $target<1) {return [];}
+        sort($candidates);
+
+        $out=Array();
+        $stek=Array();
+
+        $this->findsum(0, 0, $stek, $candidates, $target, $out, $l);
+        return $out;
+    }
+
+    function findsum($sum, $num, $stek, &$candidates, $target, &$out, $l) {
+            for($i=$num; $i<$l; $i++){
+                $c = $candidates[$i];
+                if ($c == $c0) {continue;}
+                $c0 = $c;
+                $stek_new = array_merge($stek, [$c]);
+                if ($sum+$c == $target) {
+                    sort ($stek_new);
+                    if (!in_array($stek_new, $out)) {$out[]=$stek_new;}
+                    return;
+                }
+                else if ($sum+$c > $target) return;
+                $this->findsum($sum+$c, $i+1, $stek_new, $candidates, $target, $out, $l);
+            }
+        return;
+        }
+
+}

@@ -1,0 +1,45 @@
+class Solution {
+    /**
+     * @param String[][] $board
+     * @return Boolean
+     */
+    function isValidSudoku($board) {
+
+        for ($i=0; $i<9; $i++) {
+
+            if ($this->noRepetition ($board[$i]) == false) {return false;}
+
+            $num = Array();
+            for ($j=0; $j<9; $j++) {
+                $num[] = $board[$j][$i];
+            }
+            if ($this->noRepetition ($num) == false) {return false;}
+
+        }
+
+
+        for ($i=0; $i<3; $i++) {
+            for ($j=0; $j<3; $j++) {
+
+                $num = Array(); 
+                for ($k=0; $k<3; $k++) {
+                    for ($l=0; $l<3; $l++) {
+                    $num[] = $board[3*$i+$k][3*$j+$l];
+                }}
+            if ($this->noRepetition ($num) == false) {return false;}
+            }
+        }
+
+    return true;
+
+    }
+
+    function noRepetition ($num)
+        {
+            $num = array_count_values($num);
+            $num['.'] = 0;
+            if (max($num)<=1) {return true;}
+            else {return false;}
+        }
+
+}

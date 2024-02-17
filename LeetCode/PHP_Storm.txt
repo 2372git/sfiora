@@ -1,0 +1,38 @@
+Eclipse Eclipse PDT Eclipse PDT 
+
+CodeLobster CodeLobster CodeLobster
+
+DreamWeaver Dreamweaver
+
+Visual Studio Code = Visual Studio Code  - светлая
+
+NetBeans NetBeans NetBeans - светлая, +++
+
+PhpStorm PhpStorm - тяжелый!
+
+Zend Studio Zend Studio
+
+Rapidphpeditor(smarty)
+
+Комодо Komodo 
+
+Sublime - вручную править конф файлы - для Гиков
+Sublime Text 4 = быстрая, как Notepad++, светлая, вручную править конф файлы
+
+Sublime Text 
+
+Atom
+
+brackets.io
+
+PhpIDE
+
+Codelite
+
+
+Учить:
+замыкания
+
+
+
+

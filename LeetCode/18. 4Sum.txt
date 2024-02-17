@@ -1,0 +1,59 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[][]
+     */
+    function fourSum($nums, $target) {
+        $len = sizeof($nums);
+        if ($len<4) return Array();
+        if ($len==4 AND array_sum($nums) == $target) {return Array($nums);}
+        sort ($nums);
+
+        $nums1 = Array();
+        for ($i=0; $i<$len-4; $i++)
+        {
+            if ($nums[$i]==$nums[$i+1] AND $nums[$i]==$nums[$i+2] AND $nums[$i]==$nums[$i+3] AND $nums[$i]==$nums[$i+4])
+            {
+                continue;
+            }
+            else {$nums1[] = $nums[$i];}
+        }
+$nums1[] = $nums[$len-4];
+$nums1[] = $nums[$len-3];
+$nums1[] = $nums[$len-2];
+$nums1[] = $nums[$len-1];
+
+$len = sizeof($nums1);
+$result = Array();
+
+    for ($i0=0; $i0<$len-3; $i0++)
+    {
+        for ($i1=$i0+1; $i1<$len-2; $i1++)
+        {
+            for ($i2=$i1+1; $i2<$len-1; $i2++)
+            {
+                for ($i3=$i2+1; $i3<$len; $i3++)
+                {
+                    if ($nums1[$i0]+$nums1[$i1]+$nums1[$i2]+$nums1[$i3] == $target)
+                    {
+                       $result[$nums1[$i0].$nums1[$i1].$nums1[$i2].$nums1[$i3]] = 
+                            Array($nums1[$i0],$nums1[$i1],$nums1[$i2],$nums1[$i3]);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+    }
+
+
+    return ($result);
+}
+}

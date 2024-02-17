@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @return String
+     */
+    function countAndSay($n) {
+        $a[0]=1;
+        if ($n==1) {return implode($a);}
+
+        for ($k=2; $k<=$n; $k++) {
+        $b=Array();
+        $j=1;
+        $last=$a[0];
+        for ($i=1; $i<sizeof($a); $i++) {
+            if ($a[$i] != $last) {
+                array_push($b, $j, $last); 
+                $j=1; 
+                $last=$a[$i];
+            }
+            else {$j++;}
+        }
+        array_push($b, $j, $last);
+        $a=$b;
+        }
+    return implode($a);
+    }
+}

@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function removeDuplicates(&$nums) {
+        $last = '';
+        $lastNum = 0;
+        foreach ($nums as $num)
+        {
+            if ($num == $last)
+            {
+                continue;
+            }
+            else 
+            {
+                $nums[$lastNum] = $num;
+                $last = $num;
+                $lastNum++;
+            }
+        }
+        return $lastNum;
+    }
+}

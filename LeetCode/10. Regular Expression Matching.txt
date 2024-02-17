@@ -1,0 +1,13 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @param String $p
+     * @return Boolean
+     */
+    function isMatch($s, $p) {
+//        $p = preg_replace("/\*+/", "*", $p);
+        if (preg_match ("/". preg_replace("/\*+/", "*", $p) . "/", $s, $matches)  AND $matches[0] == $s) {return true;}
+        return false;
+    }
+}

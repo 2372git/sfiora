@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[][]
+     */
+    function subsets($nums) {
+        $l = sizeof($nums);
+        $n = pow(2,$l);
+        $out = Array();
+        for ($i=0; $i<$n; $i++)
+        {
+            $line = strrev (decbin($i));
+            $out0 = Array();
+                for ($j=0; $j<$l; $j++)
+                {
+                    if (!isset($line[$j])) {break;}
+                    if ($line[$j]=='1') {$out0[]=$nums[$j];}
+                }
+            $out[]=$out0;
+        }
+        return $out;
+    }
+}

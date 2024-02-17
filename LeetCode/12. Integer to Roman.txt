@@ -1,0 +1,23 @@
+class Solution {
+
+    /**
+     * @param Integer $num
+     * @return String
+     */
+    function intToRoman($num) {
+        $roman_sym = Array ();
+        $roman_num = Array ();
+        array_push($roman_sym, 'I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M');
+        array_push($roman_num, 1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000);
+        $rest = $num;
+        $line = '';
+        $last_num = array_pop($roman_num);
+        $last_sym = array_pop($roman_sym);
+        while ($rest > 0)
+        {
+            if ($last_num <= $rest) {$line .= $last_sym; $rest -= $last_num;}
+            else {$last_num = array_pop($roman_num); $last_sym = array_pop($roman_sym);}
+        }
+        return $line;
+    }
+}

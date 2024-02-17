@@ -1,0 +1,26 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @param Integer $numRows
+     * @return String
+     */
+    function convert($s, $numRows) {
+        if ($numRows==0){return '';}
+        if ($numRows==1){return $s;}
+
+        $a = Array();
+        $j=$j0=1;
+        $i=0;
+
+            do {
+                $a[$j] .= $s[$i]; 
+                $i++;
+                if ($j>=$numRows) {$j0=-1;}
+                if ($j==1) {$j0=1;}
+                $j+=$j0;
+            } while (isset($s[$i]));
+    
+    return implode("", $a);
+    }
+}

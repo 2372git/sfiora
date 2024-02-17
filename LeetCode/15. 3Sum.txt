@@ -1,0 +1,93 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[][]
+     */
+    function threeSum($nums) {
+        $out = Array();
+        $l = count ($nums);
+        if ($l < 3) {return $out;}
+        if ($l == 3) {
+            if ($nums[0]+$nums[1]+$nums[2] == 0) {return Array($nums);}  else {return $out;}
+        }
+
+        sort($nums);
+        $last_i = 0.5;
+
+        for ($i=0; $i<$l-2; $i++) {
+            $numi = $nums[$i];
+            if ($numi>0) {break;} // нет смысла смотреть остальные $i
+            if ($last_i == $numi) {continue;}
+            $last_i = $numi;
+            $last_j = 0.5;
+
+            for ($j=$i+1; $j<$l-1; $j++) {
+                $numj = $nums[$j];
+                if ($numi+$numj>0) {break;} // нет смысла смотреть остальные $j
+                if ($last_j == $numj) {continue;}
+                $last_j = $numj;
+
+                        if (in_Array(-$numi-$numj,array_slice($nums, $j+1))) {$out[] = Array($numi,$numj,-$numi-$numj);}
+            }
+
+        }
+        return $out;
+    }
+}
+
+
+
+================================================================
+
+
+
+
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[][]
+     */
+    function threeSum($nums) {
+        $out = Array();
+        $l = count ($nums);
+        if ($l < 3) {return $out;}
+        if ($l == 3) 
+        {
+            if ($nums[0]+$nums[1]+$nums[2] == 0) {return Array($nums);} 
+            else {return $out;}
+        }
+
+        sort($nums);
+        $last_i = 10e-6;
+
+        for ($i=0; $i<$l-2; $i++)
+        {
+            if ($last_i == $nums[$i]) {continue;}
+            $last_i = $nums[$i];
+            $last_j = 10e-6;
+            if ($nums[$i]>0) {break;} // нет смысла смотреть остальные $i
+
+            for ($j=$i+1; $j<$l-1; $j++)
+            {
+                if ($last_j == $nums[$j]) {continue;}
+                $last_j = $nums[$j];
+                if ($nums[$i]+$nums[$j]>0) {break;} // нет смысла смотреть остальные $j
+
+                for ($k=$j+1; $k<$l; $k++)
+                {
+                    if ($nums[$i]+$nums[$j]+$nums[$k] > 0) {break;} // нет смысла смотреть остальные $k
+                    if ($nums[$i]+$nums[$j]+$nums[$k] == 0) 
+                        {
+                            $out[] = Array($nums[$i],$nums[$j],$nums[$k]);
+                            break; 
+                        }
+                }
+            }
+
+        }
+        return ($out);
+    }
+}
+

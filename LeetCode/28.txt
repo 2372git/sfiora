@@ -1,0 +1,13 @@
+class Solution {
+
+    /**
+     * @param String $haystack
+     * @param String $needle
+     * @return Integer
+     */
+    function strStr($haystack, $needle) {
+        $l = stripos($haystack, $needle);
+        if ($l === false) {return -1;}
+        else {return $l;}
+    }
+}

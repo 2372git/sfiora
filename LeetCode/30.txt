@@ -1,0 +1,61 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @param String[] $words
+     * @return Integer[]
+     */
+
+
+
+        private function gen ($n, &$words, &$out, $s, $wlen): void
+        {
+            if ($n == 0) 
+            {
+                $w = implode ('', $words);
+                $l=0;
+                while ($l !== false)
+                {
+                    $l = strpos($s, $w, $l); 
+                    if ($l !== false)
+                    {
+                        $out[] = $l;
+                        $l++;
+                    }
+                }    
+                return;
+            }
+			
+            for($i=0; $i<$n; $i++)
+            {
+                $this->gen ($n-1, $words, $out, $s, $wlen);
+				if ($n%2) {$r = $words[$i]; $words[$i]=$words[$n-1]; $words[$n-1]=$r;}
+				else {$r = $words[0]; $words[0]=$words[$n-1]; $words[$n-1]=$r;} 
+            }
+        }
+
+
+
+    
+    function findSubstring($s, $words) {
+
+        $wlen = strlen ($words[0]);
+        $slen = strlen ($s);
+        $size = sizeof ($words);
+        $sizeConcat = $wlen*$size;
+        $out = Array();
+
+        if ($slen < $sizeConcat)  {return $out;}
+
+        foreach ($words as $word)
+        {
+            $l = strpos($s, $word); 
+            if ($l === false) {return $out;}
+        }
+
+
+    $this->gen ($size, $words, $out, $s, $wlen);
+    return array_unique($out);
+    }
+
+}

@@ -1,0 +1,15 @@
+class Solution {
+
+    /**
+     * @param Integer $x
+     * @return Integer
+     */
+    function reverse($x) {
+        if ($x<0) {$a=-1;}
+        else {$a = 1;}
+        $x = $a * (int) strrev ((string) $x);
+        $maxval = 2**31;
+        if ($x<-$maxval OR $x>$maxval-1 ) {return 0;}
+        return $x;
+    }
+}

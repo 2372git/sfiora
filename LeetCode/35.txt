@@ -1,0 +1,30 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer
+     */
+    function searchInsert($nums, $target) {
+        $left= 0;
+        $l = sizeof($nums);
+        if ($l == 0) {return 0;}
+        if ($l == 1) {return 1*($nums[0]<$target); }
+        $right = $l - 1;
+        if ($target == $nums[$right]) {return $right;}
+        if ($target > $nums[$right]) {return $l;}
+        if ($target <= $nums[$left]) {return 0;}
+        if ($l == 2) {return 1;}
+
+        while (1) {
+            $mid = (int)(($left+$right)/2);
+            if ($nums[$mid] > $target) {$right = $mid;}
+            if ($nums[$mid] < $target) {$left = $mid;}
+            if ($right - $left == 1) {$mid = $right; break;}
+            if ($nums[$mid] == $target) {break;}
+        }
+
+        return $mid;
+
+    }
+}

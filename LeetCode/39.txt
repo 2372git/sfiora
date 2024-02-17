@@ -1,0 +1,14 @@
+class Solution {
+
+    /**
+     * @param Integer[] $candidates
+     * @param Integer $target
+     * @return Integer[][]
+     */
+    function combinationSum($candidates, $target) {
+        $l = sizeof($candidates);
+        if ($l>30 OR $l<1) {return [];}
+        if ($target>40 OR $target<1) {return [];}
+        sort ($candidates);
+    }
+}

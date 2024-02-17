@@ -1,0 +1,22 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[]
+     */
+    function searchRange($nums, $target) {
+        $out=[-1,-1];
+        $l = sizeof($nums);
+        if ($target<$nums[0]) {return $out;}
+        if ($target>$nums[$l-1]) {return $out;}
+        $left = 0;
+        $right = $l-1;
+
+        while($right>$left){
+            $med = (int)(($right-$left)/2);
+
+        }
+
+    }
+}

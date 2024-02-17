@@ -1,0 +1,67 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @return String[]
+     */
+    function generateParenthesis($n) {
+        $nn = 2*$n;
+
+        for ($i=0; $i<$nn; $i++) { $bin[$i] = 1<<$i; }
+
+        for ($k=1; $k<2**$nn; $k++)
+        {
+            $out1='';
+            $sum=$j=0;
+            for ($i=0; $i<$nn; $i++)
+            {
+                if ($k & $bin[$i]) {
+                    if ($sum<=0) {continue 2;}
+                    $out1.=')';
+                    $j++; $sum--;
+                }
+                else {
+                    if ($sum>=$nn-$j) {continue 2;}
+                    $out1.='(';
+                    $j++; $sum++;
+                }
+            }
+        $out[] = $out1;
+        }
+    return $out;
+    }
+}
+
+
+======================================================
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @return String[]
+     */
+    function generateParenthesis($n) {
+        $result = [];
+
+        $this->completeParenthesis($n, $result, '', 0, 0);
+
+        return $result;
+    }
+
+    private function completeParenthesis(int $n, array &$result, string $current, int $left, int $right): void
+    {
+        if (\strlen($current) === $n * 2) {
+            $result[] = $current;
+        }
+
+        // increase left $n times
+        if ($left < $n) {
+            $this->completeParenthesis($n, $result, $current . '(', $left + 1, $right);
+        }
+
+        // $right follows left to complete length
+        if ($right < $left) {
+            $this->completeParenthesis($n, $result, $current . ')', $left, $right + 1);
+        }
+    }
+}

@@ -1,0 +1,34 @@
+class Solution {
+
+    /**
+     * @param Integer $x
+     * @return Boolean
+     */
+    function isPalindrome($x) {
+        if ($x<0) {return false;}
+        $y=$x;
+        $x_ = 0;
+        while ($y>0) 
+        {
+            $y_ = $y%10;
+            $x_ = 10*$x_ + $y_;
+            $y = (int)($y/10);
+        }
+        if ($x_ == $x) {return true;}
+        else {return false;}
+    }
+}
+
+===============================================
+
+class Solution {
+
+    /**
+     * @param Integer $x
+     * @return Boolean
+     */
+    function isPalindrome($x) {
+        if ((int) strrev($x) == $x) {return true;}
+        else {return false;}
+    }
+}

@@ -1,0 +1,16 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums1
+     * @param Integer[] $nums2
+     * @return Float
+     */
+    function findMedianSortedArrays($nums1, $nums2) {
+        $nums = (array_merge($nums1, $nums2));
+        sort ($nums);
+        $num = sizeof ($nums);
+//        $num1 = $num/2;
+//        $num2 = ($num-1)/2;
+        return ($nums[$num/2] + $nums[($num-1)/2])/2;
+    }
+}

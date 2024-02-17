@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function removeDuplicates(&$nums) {
+        $length = sizeof ($nums);
+        if ($length <= 2) {return $length;}
+        $last=1;
+        $mem = $nums[$last];
+        for ($i=2; $i<$length; $i++)
+        {
+            if ($nums[$i-2] != $nums[$i])
+            {
+                $nums[$last] = $mem;
+                $last++;
+                $mem = $nums[$i];
+            }
+        }
+        $nums[$last] = $mem;
+        return $last+1;
+    }
+}
